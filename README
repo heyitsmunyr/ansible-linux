@@ -1,0 +1,33 @@
+This will guide you through the process of setting up a linux machine with Ansible(using Docker)! 
+
+You can install Docker using this link: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
+
+You can install Ansible using this link: https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ansible-on-ubuntu-20-04
+
+Once the installation is complete our prerequisites are complete. Now to setup tthe docker, we'll do the following: 
+1. Write an ansible playbook. (I have written one and can be found here: https://github.com/heyitsmunyr/ansible-linux/tree/main) 
+
+2. Write a Dockerfile. (I have written one and can be found here: https://github.com/heyitsmunyr/ansible-linux/tree/main) 
+
+Once these two files are there (You can automate running the playbook whenever container is started, that's exactly what I am doing but it can be run manually as well, ill explain that later), you need to create an image. Simply run: 
+
+docker build -t yourrepo/imagename:tag 
+
+Once it is created. You have login inside docker: 
+docker login
+
+and then run: 
+docker push yourrepo/imagename:latest (you can keep the tag according to the convention you're following.) 
+
+You can simply start a container using: 
+docker run -d -p 22:22 yourrepo/imagename:tag
+***************************************************************
+
+
+If you want test the task: 
+Simply take a pull from my repo: 
+
+docker pull itsmunyrhere/ansible:latest
+
+I have pushed the complete code in github as well for your reference: 
+https://github.com/heyitsmunyr/ansible-linux/tree/main
